@@ -15,7 +15,7 @@ public class dreamer extends person{
     public dreamer() {
     }
 
-    public void take(planetstone moonrock, String to){
+    public void take(planetstone moonrock, location to){
         moonrock.taken(this, to);
     }
 }

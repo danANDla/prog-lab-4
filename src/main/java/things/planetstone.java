@@ -20,18 +20,10 @@ public class planetstone extends planet implements takeable, studysample {
     }
 
     @Override
-    public void taken(person by, String newLocation) {
+    public void taken(person by, location newLocation) {
         System.out.println("The " + getName() + " was taken by " + by.getName() +
-                " from " + getLocated().getPlace() + " and was put to " + newLocation);
-        if(Objects.equals(newLocation, "Earth")){
-            setLocated(location.EARTH);
-        }
-        else if (Objects.equals(newLocation, "Moon")){
-            setLocated(location.MOON);
-        }
-        else{
-            setLocated(location.DEFAULT);
-        }
+                " from " + getLocated().getPlace() + " and was put to " + newLocation.getPlace());
+        setLocated(newLocation);
     }
 
     @Override

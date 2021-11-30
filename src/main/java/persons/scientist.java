@@ -5,7 +5,6 @@ import enums.understanding;
 import exceptions.SpeakOnDiffernetPlanetsException;
 import interfaces.social;
 import interfaces.speakable;
-import things.arguement;
 import things.planetstone;
 
 public class scientist extends person implements speakable, social {
@@ -43,17 +42,17 @@ public class scientist extends person implements speakable, social {
     public void explore(planetstone moonrock, scientist otherScientist){
         if(moonrock.getLocated() == getLocated() && getLocated()!= location.DEFAULT){
             this.setLearn(understanding.PRACTICAL);
-            System.out.println(getName() + " has practicaly leraned that " + moonrock.getName() + " has " + moonrock.getProperties());
+            System.out.println(getName() + " has practically learned that " + moonrock.getName() + " has " + moonrock.getProperties());
         }
         else if (isKnowOthers()){
             if(otherScientist.getLearn()==understanding.PRACTICAL || otherScientist.getLearn()==understanding.THEORETICAL){
                 try {
                     ask(otherScientist, "moonstone");
                     this.setLearn(understanding.THEORETICAL);
-                    System.out.println(getName() + " has theoretically leraned that " + moonrock.getName() + " has " + moonrock.getProperties());
+                    System.out.println(getName() + " has theoretically learned that " + moonrock.getName() + " has " + moonrock.getProperties());
                 }
                 catch (SpeakOnDiffernetPlanetsException ex){
-                    System.out.println(getName() + " realized that his friend wasn't near him");
+                    System.out.println("\u001B[33m" + " SpeakOnDiffernetPlanetsException: " + ex.getMessage() + "\u001B[0m");
                 }
 
             }
@@ -64,7 +63,7 @@ public class scientist extends person implements speakable, social {
                     + " because " + otherScientist.getName() + " hadn't known anything avout it");
                 }
                 catch (SpeakOnDiffernetPlanetsException ex){
-                    System.out.println(getName() + " realized that his friend wasn't near him");
+                    System.out.println("\u001B[33m" + " SpeakOnDiffernetPlanetsException: " + ex.getMessage() + "\u001B[0m");
                 }
             }
         }
@@ -74,9 +73,8 @@ public class scientist extends person implements speakable, social {
     }
 
     @Override
-    public arguement argue(person otherPerson, String topic) {
+    public void argue(person otherPerson, String topic) {
         System.out.println(getName() + " argued with " + otherPerson.getName() + " about " + topic);
-        return new arguement(topic);
     }
 
     @Override
@@ -89,8 +87,6 @@ public class scientist extends person implements speakable, social {
     @Override
     public void ask(person otherPerson, String topic) throws SpeakOnDiffernetPlanetsException {
         if(this.getLocated()!=otherPerson.getLocated()) throw new SpeakOnDiffernetPlanetsException("These people are on different planets");
-        System.out.println(this.getLocated().getPlace());
-        System.out.println(otherPerson.getLocated().getPlace());
         System.out.println(getName() + " asked " + otherPerson.getName() + " about " + topic);
     }
 
