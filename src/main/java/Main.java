@@ -73,7 +73,7 @@ public class Main {
             stark.share(expert, "his opinion on this topic");
             question.setArgueTimes(question.getArgueTimes()+1);
         }
-        System.out.println("...and Finally the truth was born");
+        author.say("...and Finally the truth was born");
         stark.say("The truth is born in disputes");
         author.say(" - Stark said");
         expert.explore(moonit, stark);
