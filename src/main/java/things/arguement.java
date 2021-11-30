@@ -3,6 +3,7 @@ package things;
 public class arguement {
     private int argueTimes;
     private String topic;
+    private boolean resolved;
 
     public arguement(String topic) {
         this.argueTimes = 0;
@@ -26,5 +27,13 @@ public class arguement {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public boolean isResolved() {
+        return resolved;
+    }
+
+    public void setResolved(boolean resolved) {
+        this.resolved = resolved;
     }
 }

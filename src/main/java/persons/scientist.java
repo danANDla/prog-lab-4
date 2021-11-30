@@ -2,6 +2,7 @@ package persons;
 
 import enums.location;
 import enums.understanding;
+import exceptions.SpeakOnDiffernetPlanetsException;
 import interfaces.social;
 import interfaces.speakable;
 import things.arguement;
@@ -46,13 +47,25 @@ public class scientist extends person implements speakable, social {
         }
         else if (isKnowOthers()){
             if(otherScientist.getLearn()==understanding.PRACTICAL || otherScientist.getLearn()==understanding.THEORETICAL){
-                ask(otherScientist, "moonstone");
-                this.setLearn(understanding.THEORETICAL);
-                System.out.println(getName() + " has theoretically leraned that " + moonrock.getName() + " has " + moonrock.getProperties());
+                try {
+                    ask(otherScientist, "moonstone");
+                    this.setLearn(understanding.THEORETICAL);
+                    System.out.println(getName() + " has theoretically leraned that " + moonrock.getName() + " has " + moonrock.getProperties());
+                }
+                catch (SpeakOnDiffernetPlanetsException ex){
+                    System.out.println(getName() + " realized that his friend wasn't near him");
+                }
+
             }
             else{
-                ask(otherScientist, "moonstone");
-                System.out.println(getName() + " hasn't succeed in finding any information about " + moonrock.getName());
+                try {
+                    ask(otherScientist, "moonstone");
+                    System.out.println(getName() + " didn't succeed in finding any information about " + moonrock.getName()
+                    + " because " + otherScientist.getName() + " hadn't known anything avout it");
+                }
+                catch (SpeakOnDiffernetPlanetsException ex){
+                    System.out.println(getName() + " realized that his friend wasn't near him");
+                }
             }
         }
         else {
@@ -74,7 +87,10 @@ public class scientist extends person implements speakable, social {
     }
 
     @Override
-    public void ask(person otherPerson, String topic) {
+    public void ask(person otherPerson, String topic) throws SpeakOnDiffernetPlanetsException {
+        if(this.getLocated()!=otherPerson.getLocated()) throw new SpeakOnDiffernetPlanetsException("These people are on different planets");
+        System.out.println(this.getLocated().getPlace());
+        System.out.println(otherPerson.getLocated().getPlace());
         System.out.println(getName() + " asked " + otherPerson.getName() + " about " + topic);
     }
 

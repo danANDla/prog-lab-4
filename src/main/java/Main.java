@@ -7,7 +7,7 @@ import things.planetstone;
 
 public class Main {
     public static void main(String[] args) {
-        scientist stark = new scientist("Stark", location.EARTH, understanding.DEFAULT);
+        scientist stark = new scientist("Stark", location.MOON, understanding.DEFAULT);
         scientist expert = new scientist("Expert", location.EARTH, understanding.DEFAULT);
         dreamer dunno = new dreamer("Dunno", location.EARTH);
         planetstone moonit = new planetstone("Moonit", location.EARTH, "antigravity");
