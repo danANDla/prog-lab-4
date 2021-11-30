@@ -7,6 +7,8 @@ import interfaces.social;
 import interfaces.speakable;
 import things.planetstone;
 
+import java.util.Objects;
+
 public class scientist extends person implements speakable, social {
     private understanding learn;
 
@@ -93,5 +95,26 @@ public class scientist extends person implements speakable, social {
     @Override
     public void share(person otherPerson, String topic) {
         System.out.println(getName() + " shared with " + otherPerson.getName() + " information about " + topic);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        scientist scientist = (scientist) o;
+        return learn == scientist.learn;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), learn);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +  " scientist{" +
+                "learn=" + learn +
+                '}';
     }
 }

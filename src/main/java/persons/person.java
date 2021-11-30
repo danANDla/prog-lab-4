@@ -49,11 +49,20 @@ public abstract class person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         person person = (person) o;
-        return Objects.equals(name, person.name) && located == person.located;
+        return knowOthers == person.knowOthers && name.equals(person.name) && located == person.located;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, located);
+        return Objects.hash(name, located, knowOthers);
+    }
+
+    @Override
+    public String toString() {
+        return "person{" +
+                "name='" + name + '\'' +
+                ", located=" + located +
+                ", knowOthers=" + knowOthers +
+                '}';
     }
 }

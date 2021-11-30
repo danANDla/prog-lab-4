@@ -2,6 +2,8 @@ package things;
 
 import enums.location;
 
+import java.util.Objects;
+
 public abstract class thing {
     private final String name;
     private location located;
@@ -30,5 +32,26 @@ public abstract class thing {
 
     public void setLocated(location located) {
         this.located = located;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        thing thing = (thing) o;
+        return name.equals(thing.name) && located == thing.located;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, located);
+    }
+
+    @Override
+    public String toString() {
+        return "thing{" +
+                "name='" + name + '\'' +
+                ", located=" + located +
+                '}';
     }
 }

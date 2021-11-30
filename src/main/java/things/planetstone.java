@@ -31,4 +31,24 @@ public class planetstone extends planet implements takeable, studysample {
         return this.properties;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        planetstone that = (planetstone) o;
+        return Objects.equals(properties, that.properties);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), properties);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +  " planetstone{" +
+                "properties='" + properties + '\'' +
+                '}';
+    }
 }

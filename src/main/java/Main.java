@@ -56,5 +56,11 @@ public class Main {
         expert.explore(moonit, stark);
         dunno.take(moonit, location.MOON);
         stark.explore(moonit, expert);
+
+        System.out.println();
+        System.out.println(stark.toString());
+        System.out.println(dunno.toString());
+        System.out.println(expert.toString());
+        System.out.println(moonit.toString());
     }
 }
