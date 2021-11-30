@@ -49,7 +49,7 @@ public class scientist extends person implements speakable, social {
         else if (isKnowOthers()){
             if(otherScientist.getLearn()==understanding.PRACTICAL || otherScientist.getLearn()==understanding.THEORETICAL){
                 try {
-                    ask(otherScientist, "moonstone");
+                    ask(otherScientist, moonrock.getName());
                     this.setLearn(understanding.THEORETICAL);
                     System.out.println(getName() + " has theoretically learned that " + moonrock.getName() + " has " + moonrock.getProperties());
                 }
@@ -60,7 +60,7 @@ public class scientist extends person implements speakable, social {
             }
             else{
                 try {
-                    ask(otherScientist, "moonstone");
+                    ask(otherScientist, moonrock.getName());
                     System.out.println(getName() + " didn't succeed in finding any information about " + moonrock.getName()
                     + " because " + otherScientist.getName() + " hadn't known anything avout it");
                 }
@@ -95,6 +95,11 @@ public class scientist extends person implements speakable, social {
     @Override
     public void share(person otherPerson, String topic) {
         System.out.println(getName() + " shared with " + otherPerson.getName() + " information about " + topic);
+    }
+
+    @Override
+    public void say(String replic) {
+        System.out.print("\"" + replic + "\"");
     }
 
     @Override

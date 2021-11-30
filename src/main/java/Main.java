@@ -1,6 +1,9 @@
 import enums.location;
 import enums.understanding;
+import exceptions.SpeakOnDiffernetPlanetsException;
+import interfaces.speakable;
 import persons.dreamer;
+import persons.person;
 import persons.scientist;
 import things.planetstone;
 
@@ -16,6 +19,25 @@ public class Main {
         expert.share(stark, "Expert's idea");
         expert.share(stark, "science problem");
         stark.share(expert, "another science problem");
+
+        speakable author = new speakable() {
+            @Override
+            public void ask(person otherPerson, String topic) throws SpeakOnDiffernetPlanetsException {
+                System.out.print(" \u001B[36m" + otherPerson.getName() + " asked" +  "\u001B[0m");
+            }
+
+            @Override
+            public void share(person otherPerson, String topic) {
+                System.out.print(" \u001B[36m" + otherPerson.getName() + " shared" +  "\u001B[0m");
+            }
+
+            @Override
+            public void say(String replic) {
+                System.out.println("\u001B[36m" + replic +  "\u001B[0m");
+            }
+        };
+
+        author.say("It often happens with shorties: at first they quarrel and after that they make friends");
 
         class arguement{
             private final int numberOfReplics;
@@ -52,7 +74,8 @@ public class Main {
             question.setArgueTimes(question.getArgueTimes()+1);
         }
         System.out.println("...and Finally the truth was born");
-
+        stark.say("The truth is born in disputes");
+        author.say(" - Stark said");
         expert.explore(moonit, stark);
         dunno.take(moonit, location.MOON);
         stark.explore(moonit, expert);
